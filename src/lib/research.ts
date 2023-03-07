@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai';
 import * as fs from 'fs'
 import { dot, norm } from 'mathjs'
-import reference_data from './dan_info/reference_data';
+import reference_data from './reference_data';
 
 
 
