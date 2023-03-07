@@ -1,6 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai';
 import * as fs from 'fs'
 import { dot, norm } from 'mathjs'
+import reference_data from './dan_info/reference_data';
 
 
 
@@ -48,7 +49,8 @@ export async function fetch_research(input: string, count: number): string {
     // get the research folder
     let research_files 
     try{
-        research_files = fs.readdirSync('./src/lib/dan_info')
+        // research_files = fs.readdirSync('./src/lib/dan_info')
+        research_files = reference_data;
     } catch (err) {
         console.log(err)
     }
@@ -59,7 +61,8 @@ export async function fetch_research(input: string, count: number): string {
     for (const file of research_files) {
       // open file, get embedding, and then get similarity score in score variable
       debugger;
-      const content = fs.readFileSync(`${'./src/lib/dan_info'}/${file}`, 'utf8')
+      // const content = fs.readFileSync(`${'./src/lib/dan_info'}/${file}`, 'utf8')
+      const content = file
       const research_embedding = await gpt3_embedding(content)
       const score = similarity(tokenized_input, research_embedding)
   
@@ -71,7 +74,8 @@ export async function fetch_research(input: string, count: number): string {
     const top_research_logs = ordered_research_logs.slice(0, count)
   
     // concatenate the content of the top research logs into a single string
-    const combined_content = top_research_logs.map(log => fs.readFileSync(`${'./src/lib/dan_info'}/${log.file}`, 'utf8')).join('\n')
+    const combined_content = top_research_logs.map(log => log.file).join('\n')
+    // const combined_content = top_research_logs.map(log => fs.readFileSync(`${'./src/lib/dan_info'}/${log.file}`, 'utf8')).join('\n')
   
     // combine the concatenated content with the NOTES prompt
     const notes_prompt = 'Write detailed notes of the following in a hyphenated list format like "- ". Include any relevant dates.\n\n<<INPUT>>\n\nNOTES:'

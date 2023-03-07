@@ -77,7 +77,7 @@
 				<ChatMessage type="assistant" message={answer} />
 			{/if}
 			{#if loading}
-				<ChatMessage type="assistant" message="Loading.." />
+				<ChatMessage type="assistant" message="Loading Research.." />
 			{/if}
 		</div>
 		<div class="" bind:this={scrollToDiv} />
