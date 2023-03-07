@@ -60,7 +60,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 
 		// fetch research by comparing msg.content to research files
-		const research = await fetch_research(reqMessages[reqMessages.length - 1].content)
+		const research = await fetch_research(reqMessages[reqMessages.length - 1].content, 4)
 
 		// Summarize relevant research by asking gpt3 to summarize it
 		const summarized_research = await fetch('https://api.openai.com/v1/completions', {
