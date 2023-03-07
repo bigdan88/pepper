@@ -38,12 +38,15 @@
 		"tslib": "^2.5.0",
 		"typescript": "^4.9.5",
 		"vite": "^4.1.4",
+		"vite-plugin-inspect": "^0.7.15",
 		"vitest": "^0.25.8"
 	},
 	"type": "module",
 	"dependencies": {
 		"gpt3-tokenizer": "^1.1.5",
+		"mathjs": "^11.6.0",
 		"openai": "^3.2.1",
+		"openai-api": "^1.3.1",
 		"sse.js": "^0.6.1"
 	}
 }

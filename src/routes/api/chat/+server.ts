@@ -4,10 +4,17 @@ import type { RequestHandler } from './$types'
 import { getTokens } from '$lib/tokenizer'
 import { json } from '@sveltejs/kit'
 import type { Config } from '@sveltejs/adapter-vercel'
+import { Configuration, OpenAIApi } from 'openai';
+import * as fs from 'fs'
+import { dot, norm } from 'mathjs'
+import { fetch_research } from '$lib/research';
 
-export const config: Config = {
-	runtime: 'edge'
-}
+const configuration = new Configuration({
+	apiKey: process.env.OPENAI_API_KEY,
+  });
+  
+  const openai = new OpenAIApi(configuration);
+
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {
@@ -52,8 +59,30 @@ export const POST: RequestHandler = async ({ request }) => {
 			throw new Error('Query flagged by openai')
 		}
 
+		// fetch research by comparing msg.content to research files
+		const research = await fetch_research(reqMessages[reqMessages.length - 1].content)
+
+		// Summarize relevant research by asking gpt3 to summarize it
+		const summarized_research = await fetch('https://api.openai.com/v1/completions', {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${OPENAI_KEY}`
+			},
+			method: 'POST',
+			body: JSON.stringify({
+				prompt: research,
+				temperature: 0.2,
+				max_tokens: 400,
+				top_p: 1,
+				frequency_penalty: 0,
+				presence_penalty: 0,
+				stop: ['\n']
+			})
+		})
+		
+
 		const prompt =
-			'You are a virtual assistant for a company called Huntabyte. Your name is Axel Smith'
+			'You are a virtual assistant for Daniel Han. Your name is Pepper. Your purpose is to answer questions about Daniel Han from notes below. Please try to keep the conversation about him. <<NOTES>>'
 		tokenCount += getTokens(prompt)
 
 		if (tokenCount >= 4000) {
@@ -61,7 +90,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 
 		const messages: ChatCompletionRequestMessage[] = [
-			{ role: 'system', content: prompt },
+			{ role: 'system', content: prompt.replace('<<NOTES>>', research) },
 			...reqMessages
 		]
 
