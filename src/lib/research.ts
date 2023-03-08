@@ -130,7 +130,7 @@ const configuration = new Configuration({
 
 export async function get({ params }) {
     const { input } = params;
-    const notes = fetch_research(input);
+    const notes = fetch_research(input, count);
     return {
         body: notes
     }
@@ -166,6 +166,7 @@ export async function fetch_research(input: string, count: number): string {
     } catch (err) {
         console.log(err)
     }
+    console.log(research_files)
   
     // get the embeddings for each file
     const research_logs: ResearchLog[] = []
