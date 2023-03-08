@@ -2,7 +2,7 @@ import GPT3TokenizerImport from "gpt3-tokenizer";
 import { j as json } from "../../../../chunks/index.js";
 import { Configuration, OpenAIApi } from "openai";
 import "fs";
-const OPENAI_KEY = "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";
+const OPENAI_KEY = "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";
 const GPT3Tokenizer = typeof GPT3TokenizerImport === "function" ? GPT3TokenizerImport : GPT3TokenizerImport.default;
 const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
 function getTokens(input) {
@@ -132,7 +132,7 @@ function similarity(v1, v2) {
   const normV2 = Math.sqrt(v2.reduce((acc, curr) => acc + curr ** 2, 0));
   return dotProduct / (normV1 * normV2);
 }
-async function fetch_research(input, count2) {
+async function fetch_research(input, count) {
   const tokenized_input = await gpt3_embedding(input);
   let research_files;
   try {
@@ -140,7 +140,6 @@ async function fetch_research(input, count2) {
   } catch (err) {
     console.log(err);
   }
-  console.log(research_files);
   const research_logs = [];
   for (const file of research_files) {
     const content = file;
@@ -149,7 +148,7 @@ async function fetch_research(input, count2) {
     research_logs.push({ file, vector: research_embedding, score });
   }
   const ordered_research_logs = research_logs.sort((a, b) => b.score - a.score);
-  const top_research_logs = ordered_research_logs.slice(0, count2);
+  const top_research_logs = ordered_research_logs.slice(0, count);
   const combined_content = top_research_logs.map((log) => log.file).join("\n");
   const notes_prompt = 'Write detailed notes of the following in a hyphenated list format like "- ". Include any relevant dates.\n\n<<INPUT>>\n\nNOTES:';
   const notes = notes_prompt.replace("<<INPUT>>", combined_content);
