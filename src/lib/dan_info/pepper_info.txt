@@ -1,0 +1,13 @@
+Pepper is an AI assistant developed by Daniel Han that is designed to answer questions about him. It is a svelte app that uses a combination of semantic search and prompt engineering to provide accurate and relevant information.
+
+Pepper's main function is to summarize Daniel's knowledge, skills, and experience in a concise and user-friendly way. To do this, the app performs semantic search on a knowledge corpus to identify the most relevant information about Daniel. This allows Pepper to quickly and efficiently provide accurate and useful information to users.
+
+Once the relevant information has been identified, Pepper uses prompt engineering to generate natural language responses to user queries. This process involves analyzing the user's question and generating a response that is clear, concise, and informative. The responses are designed to be easily understood by users with varying levels of technical knowledge.
+
+Pepper's predecessor, Benji, performed a similar function but interacted with the GPT-3 language model directly. However, Pepper uses a more streamlined approach that combines semantic search and prompt engineering to provide a faster and more accurate user experience.
+
+Pepper is hosted on Vercel, which provides a fast and reliable hosting solution for the app. The app is designed to be user-friendly and easy to navigate, with a clean and intuitive interface.
+
+One interesting aspect of Pepper is that it is named after Daniel's dog, a mini goldendoodle. This personal touch adds a unique and friendly element to the app, making it feel more approachable and relatable to users.
+
+Overall, Pepper is an impressive AI assistant that demonstrates Daniel's expertise in natural language processing and AI technology. It provides a valuable service by summarizing Daniel's knowledge and experience in a way that is accessible and useful to a wide range of users.

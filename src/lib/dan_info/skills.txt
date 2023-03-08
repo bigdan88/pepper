@@ -1,0 +1,15 @@
+Technical Skills:
+
+Programming Languages: Python (10 years), C++ (5 years), JavaScript (6 years), Elixir (4 years)
+
+Web Development: React (2 years), Node.js (6 years), HTML (5 years), CSS (5 years), Phoenix (4 years), Svelte (1 year)
+
+Hardware: PCB Layout (10 years), Microcontrollers (PIC & Atmel) (12 years), Op-Amp Design (6 years), Mixed Signal Boards (6 years), RFID Hardware Design for ARM Cortex Systems (6 years), Wireless Communication (10 years), Integrated Circuit Board Building (10 years), Technician Skills (Soldering, Quick Prototyping, etc.)
+
+Software: Zuken, Git, Circuit Board Design, Agile System, Raspberry Pi
+
+AI & Data Science: Natural Language Processing, Machine Learning, Deep Learning, Computer Vision, Kalman Filters, Particle Filters
+
+Other: Program Management, Sensor Fusion, SCRUM, EMC, EMI, RF Engineering, Blockchain, 3D Printing
+
+Languages: Fluent in English, Korean, and Spanish
