@@ -2,7 +2,7 @@ import GPT3TokenizerImport from "gpt3-tokenizer";
 import { j as json } from "../../../../chunks/index.js";
 import { Configuration, OpenAIApi } from "openai";
 import "fs";
-const OPENAI_KEY = "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";
+const OPENAI_KEY = "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";
 const GPT3Tokenizer = typeof GPT3TokenizerImport === "function" ? GPT3TokenizerImport : GPT3TokenizerImport.default;
 const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
 function getTokens(input) {
