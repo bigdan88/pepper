@@ -129,9 +129,7 @@ function similarity(v1: number[], v2: number[]): number {
 
 export async function fetch_research(input: string, count: number): string {
     // tokenize the input with GPT-3
-    console.log(input)
     const tokenized_input = await gpt3_embedding(input)
-    console.log(tokenized_input)
   
     //consol.log the current folders in this directory
     // get the research folder
@@ -142,14 +140,12 @@ export async function fetch_research(input: string, count: number): string {
     } catch (err) {
         console.log(err)
     }
-    console.log(research_files)
   
     // get the embeddings for each file
     const research_logs: ResearchLog[] = []
     for (const file of research_files) {
       // open file, get embedding, and then get similarity score in score variable
       // const content = fs.readFileSync(`${'./src/lib/dan_info'}/${file}`, 'utf8')
-      console.log(file)
       const content = file
       const research_embedding = await gpt3_embedding(content)
       const score = similarity(tokenized_input, research_embedding)
@@ -190,7 +186,6 @@ curl https://api.openai.com/v1/embeddings \
         })
     })
     const embedding = await response.json()
-    console.log(embedding)
     return embedding.data[0].embedding
 }
 
